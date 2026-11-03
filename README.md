@@ -23,7 +23,7 @@ Both extras are optional:
 
 ## GUI
 
-`notepdf gui` opens NotePDF in your browser. Under WSL that's your Windows browser. You can also
+`notepdf gui` opens NotePDF in your browser (full guide: [docs/GUI.md](docs/GUI.md)). Under WSL that's your Windows browser. You can also
 pass a file to open: `notepdf gui paper.pdf`.
 
 - **Select text to highlight it, as in Edge or Acrobat.** Drag across words (or double-click one) and
