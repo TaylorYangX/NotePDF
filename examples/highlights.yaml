@@ -1,0 +1,51 @@
+# Run:  notepdf apply examples/highlights.yaml
+# (regenerate the input with: python examples/make_sample_pdf.py)
+
+input: sample.pdf                 # relative to this file
+output: sample.annotated.pdf
+remove_existing: true             # rerunning replaces NotePDF's earlier annotations
+
+defaults:
+  color: yellow
+  opacity: 0.4
+  author: Taylor
+  popup: closed
+
+annotations:
+  # Plain text: found across line breaks; case, punctuation and hyphenation are ignored.
+  - text: "significantly outperforms the baseline on every benchmark we tried"
+    comment: "Reviewer 2, point 3: now stated explicitly."
+    color: "#A5D6A7"
+
+  # Restrict to a page (1-based) and pick which occurrence.
+  - text: "our method"
+    pages: 2
+    occurrence: all
+    color: blue
+    type: underline
+
+  # Disambiguate by the surrounding text.
+  - text: "our method adapts online"
+    context_before: "In contrast to prior work"
+    comment: "New claim."
+
+  # {{gap}} skips text you can't or don't want to spell out (here: the citation numbers).
+  - text: "Prior work {{gap:12}} focused on offline detection"
+    color: pink
+
+  # Regular expressions (matched against the text with whitespace collapsed).
+  - regex: "Table\\s+\\d+"
+    occurrence: all
+    color: orange
+    comment: "Check table numbering."
+
+  # Exact matching (punctuation counts; curly quotes and dashes are treated as ASCII).
+  - text: "First, the input is encoded with a transformer;"
+    match: exact
+    comment: "Rewritten."
+    popup: open             # the popup is shown when the PDF opens
+    sticky_note: true       # also a margin icon, for viewers that don't show highlight comments
+
+  # Optional entries don't fail --strict when they aren't found.
+  - text: "a sentence that is not in the paper"
+    required: false

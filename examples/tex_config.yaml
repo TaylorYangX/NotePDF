@@ -1,0 +1,27 @@
+# Highlight the revised parts of examples/paper in its compiled PDF.
+#   cd examples/paper && pdflatex paper.tex && cd ..
+#   notepdf apply tex_config.yaml
+# or write the generated entries to a file you can review and edit first:
+#   notepdf tex2config paper/paper.tex -c tex_config.yaml -o revisions.yaml
+
+input: paper/paper.pdf
+output: paper/paper.revisions.pdf
+
+defaults:
+  author: Authors
+  subject: Revision
+  opacity: 0.35
+
+tex:
+  main: paper/paper.tex
+  markers:
+    - color: revcolor        # {\color{revcolor}...} and \textcolor{revcolor}{...}
+      highlight: yellow      # or "tex" to reuse the \definecolor value
+      comment: "Revised ({file}:{line})"   # used when a marker has no %@note
+  # \rev{...} is found automatically because its definition uses revcolor (detect_macros),
+  # and zero-argument macros from the preamble (\ours) are expanded automatically.
+  # Macros defined elsewhere (e.g. in a .sty file) can be given here:
+  replacements:
+    "\\etal": "et al."
+  include_captions: true
+  include_footnotes: true

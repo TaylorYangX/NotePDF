@@ -1,0 +1,17 @@
+\section{Method}
+\ours works in three steps.
+\begin{itemize}
+  \item It reads the source and follows every \verb|\input| command.
+  \item {\color{revcolor} %@note: R3.2 -- explain the matching step
+  It converts each marked region to plain text and searches for it in the PDF, ignoring
+  punctuation, hyphenation and line breaks.}
+  \item It writes standard PDF annotations that every viewer can display.
+\end{itemize}
+
+{\color{revcolor}
+The matching score is defined as
+\begin{equation}
+  s = \frac{|m|}{|t|},
+\end{equation}
+where $m$ is the matched text and $t$ the target text (see Section~\ref{sec:method}).}
+\label{sec:method}

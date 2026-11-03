@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black]{hyperref}
+
+% Revised text is blue in the review version. Set it to black for a clean build;
+% NotePDF finds the text either way.
+\definecolor{revcolor}{RGB}{0,0,200}
+\newcommand{\rev}[1]{{\color{revcolor}#1}}   % detected automatically as a marker
+\newcommand{\ours}{FlowNote\xspace}
+\providecommand{\xspace}{}
+
+\title{FlowNote: Annotating Revisions Automatically}
+\author{A. Author}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Reviewers often ask authors to point out what changed between two versions of a paper.
+{\color{revcolor} %@note: R1.1 -- clarified the motivation
+We propose \ours, a tool that turns the revision markers already present in the \LaTeX{} source
+into highlights and comments in the compiled PDF, so that reviewers can find every change
+without reading the whole paper again~\cite{knuth,lamport}.}
+Manual highlighting is slow and error-prone.
+
+%@note: R2.3 -- new evaluation
+\rev{We further evaluate \ours on three new datasets and report a speed-up of $3.2\times$ over manual annotation.}
+
+\input{sections/method}
+
+\section{Conclusion}
+\textcolor{revcolor}{%@note: R1.4 -- added limitations
+A limitation is that display equations are not highlighted automatically\footnote{They are listed in the report instead.}; we plan to address this in future work.}
+
+\begin{thebibliography}{9}
+\bibitem{knuth} D.~E. Knuth. \emph{The \TeX book}. Addison-Wesley, 1984.
+\bibitem{lamport} L.~Lamport. \emph{\LaTeX: A Document Preparation System}. Addison-Wesley, 1994.
+\end{thebibliography}
+\end{document}

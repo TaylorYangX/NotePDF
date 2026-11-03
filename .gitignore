@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.annotated.pdf
+*.revisions.pdf
+examples/paper/*.aux
+examples/paper/*.log
+examples/paper/*.out
+examples/paper/*.pdf
+app/node_modules/
+app/src-tauri/target/
+app/src-tauri/gen/
+app-backend.log
+# built from app/ with `npm run build`
+src/notepdf/gui/dist/
